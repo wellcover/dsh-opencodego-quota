@@ -43,24 +43,6 @@ Key 解析顺序：
 | 卡片不出现 | 插件未激活或 client 未加载：确认 profile `package.json` 的 `dsh.profile.bundles` 含本包名，重启后刷新页面 |
 | 窄栏图标模式下卡片隐藏 | 设计如此：侧栏 <110px 时自动隐藏，展开侧栏即恢复 |
 
-## 工作原理
-
-- **Host 半**（`lib/index.js`）：Cordis 插件，注入 `fs / webServer / credentials`，在宿主进程注册 `GET /opencodego-quota/api`，读取 Key 后调用官方 `/zen/go/v1/usage`，把 `percent` / `resetsAt` 归一化（兼容旧 `used`/`limit` 形状），换算美元金额后返回 JSON。
-- **Client 半**（`lib/client.js`）：`window.__ModuleLoader__.load` 格式的浏览器模块，无 React、无构建步骤；挂左侧栏卡片、每 60 秒轮询同源 `/opencodego-quota/api`、渲染三根进度条与刷新时间。
-
-官方接口响应示例：
-
-```json
-{
-  "usage": {
-    "rolling":  { "status": "ok", "percent": 18, "resetsAt": "2026-08-18T18:44:05.029Z" },
-    "weekly":   { "status": "ok", "percent": 34, "resetsAt": "2026-08-24T00:00:00.029Z" },
-    "monthly":  { "status": "ok", "percent": 35, "resetsAt": "2026-09-15T03:09:01.029Z" }
-  }
-}
-```
-
-> 说明：该接口未写入 OpenCode 公开文档，可能变动；解析做了防御处理，非 200 / 格式异常会以友好状态显示而非崩溃。配额金额（$12/$30/$60）为 Go 订阅档位换算，仅用于展示。
 
 ## 变更记录
 
