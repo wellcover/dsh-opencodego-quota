@@ -17,16 +17,23 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 
 ## 安装
 
-### 从 GitHub 克隆源码打包
+### 从 GitHub 直接安装（推荐）
+
+```bash
+# 安装最新 main 分支
+dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
+# 或锁定稳定版本 tag（推荐）
+dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.3
+```
+
+### 或从源码打包（本地开发）
 
 ```bash
 git clone https://github.com/wellcover/dsh-opencodego-quota.git
 cd dsh-opencodego-quota
-npm pack                # 生成 dsh-opencodego-quota-1.0.3.tgz
+npm pack
 dsh plugin --profile web add dsh-opencodego-quota-1.0.3.tgz
 ```
-
-### 或直接打包本地源码
 
 装完**重启 `dsh web`**（或桌面应用重开）生效。`dsh plugin add` 会自动：
 1. 用 pnpm 把包装进 `~/.dsh/profiles/web`；
