@@ -18,7 +18,7 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 ## 安装
 
 ```bash
-dsh plugin --profile web add dsh-opencodego-quota-1.0.3.tgz
+dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
 ```
 
 ### 或直接打包本地源码
