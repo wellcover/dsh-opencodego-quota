@@ -16,7 +16,7 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 - 🔒 Key 仅经 HTTPS 发给官方接口（`Authorization: Bearer` + `x-api-key`）
 
 
-<img width="246" height="264" alt="image" src="https://github.com/user-attachments/assets/dbc04827-1dca-4502-a8c4-df51d30c503f" />
+<img width="520" height="520" alt="image" src="https://github.com/user-attachments/assets/dbc04827-1dca-4502-a8c4-df51d30c503f" />
 
 
 
