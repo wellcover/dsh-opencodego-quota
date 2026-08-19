@@ -21,28 +21,6 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
 ```
 
-### 或直接打包本地源码
-
-装完**重启 `dsh web`**（或桌面应用重开）生效。`dsh plugin add` 会自动：
-1. 用 pnpm 把包装进 `~/.dsh/profiles/web`；
-2. 把包名写入 profile 的 `dsh.profile.bundles`；
-3. 启动时读取包内 `cordis.patch.yml` 挂载插件行（`/opencodego-quota/api` 路由）。
-
-手动安装（无 pnpm）：
-
-```bash
-# 1. 拷贝包到 profile 的 node_modules
-copy /Y opencodego-quota %USERPROFILE%\.dsh\profiles\web\node_modules\dsh-opencodego-quota\ (递归)
-# 2. 在 %USERPROFILE%\.dsh\profiles\web\package.json 的 dsh.profile.bundles 追加 "dsh-opencodego-quota"
-# 3. 在 %USERPROFILE%\.dsh\profiles\web\cordis.patch.yml 追加：
-#   - insert:
-#       - id: opencodego-quota
-#         name: 'dsh-opencodego-quota'
-#         inject:
-#           - fs
-#           - webServer
-#           - credentials
-```
 
 ## 配置
 
