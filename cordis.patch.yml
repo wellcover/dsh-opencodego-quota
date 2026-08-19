@@ -1,0 +1,18 @@
+# dsh-opencodego-quota — bundle patch layer.
+#
+# When the package is installed into a DSH profile (via `dsh plugin --profile
+# web add dsh-opencodego-quota` or manually), the loader applies this patch
+# over the profile root entry list, mounting the plugin row.
+#
+# The `inject` list is REQUIRED: it tells the Cordis loader to wait until the
+# fs / webServer / credentials services are ready before activating the plugin.
+# Without it the plugin's apply may run before those services exist, the
+# /opencodego-quota/api route never registers, and the left-bar card shows a
+# fetch error.
+- insert:
+    - id: opencodego-quota
+      name: 'dsh-opencodego-quota'
+      inject:
+        - fs
+        - webServer
+        - credentials
