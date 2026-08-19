@@ -15,6 +15,11 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 - 🔑 **零配置取 Key**：自动从 DSH 凭据（`OPENCODE_GO_API_KEY`）读取，失败时回退到环境变量与 OpenCode CLI 的 `auth.json`
 - 🔒 Key 仅经 HTTPS 发给官方接口（`Authorization: Bearer` + `x-api-key`）
 
+
+<img width="246" height="264" alt="image" src="https://github.com/user-attachments/assets/dbc04827-1dca-4502-a8c4-df51d30c503f" />
+
+
+
 ## 安装
 
 ```bash
