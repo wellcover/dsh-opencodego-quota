@@ -9,7 +9,7 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 - 📍 **左侧栏常驻卡片**：跟随 DSH 壳层渲染自动复位（MutationObserver 自愈），窄栏（图标栏）模式下自动隐藏
 - 📊 **三窗口进度条**：`日 · 近5小时`（$12）、`周 · 本周`（$30）、`月 · 本月`（$60）
 - 💰 每条显示已用百分比、已用美元 / 配额上限、重置时间（与官网一致）
-- 🟢🟡🔴 剩余比例着色：剩余 >50% 绿 / 20–50% 黄 / <20% 红
+- 🎨 **进度条随额度渐变**（v1.0.4）：填充条、圆点与百分比文字颜色随已用额度 0→100% 由绿 → 黄 → 红 平滑渐变（HSL 色相 120→0），额度越高越偏红
 - ⏱️ **DS 峰谷进度条**（v1.0.2）：按北京时间实时显示当前计费时段——高峰 09:00–12:00、14:00–18:00（琥珀色），其余为低谷（绿色）；24 小时色带 + 当前时刻标记，显示「高峰/低谷 · 时段区间（不含已过百分比）」，每 30 秒本地刷新
 - ⏱️ **刷新时间**（v1.0.3）：卡片底部显示「刷新于 HH:MM:SS」与当前间隔秒数（如 `60s`，点击可打开设置）；标题栏 ⚙ 按钮弹出设置层，可输入 5–3600 秒，回车/保存生效、localStorage 持久化；⟳ 按钮手动刷新
 - 🔑 **零配置取 Key**：自动从 DSH 凭据（`OPENCODE_GO_API_KEY`）读取，失败时回退到环境变量与 OpenCode CLI 的 `auth.json`
@@ -28,7 +28,7 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 # 安装最新 main 分支
 dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
 # 或锁定稳定版本 tag（推荐）
-dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.3
+dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.4
 ```
 
 ### 或从源码打包（本地开发）
@@ -37,7 +37,7 @@ dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.3
 git clone https://github.com/wellcover/dsh-opencodego-quota.git
 cd dsh-opencodego-quota
 npm pack
-dsh plugin --profile web add dsh-opencodego-quota-1.0.3.tgz
+dsh plugin --profile web add dsh-opencodego-quota-1.0.4.tgz
 ```
 
 装完**重启 `dsh web`**（或桌面应用重开）生效。`dsh plugin add` 会自动：
@@ -85,6 +85,7 @@ Key 解析顺序：
 
 ## 变更记录
 
+- **v1.0.4**：额度进度条颜色随已用额度 0→100% 由绿渐变到红（填充条、圆点、百分比同色）。
 - **v1.0.3**：刷新间隔改为标题栏 ⚙ 设置弹层调整（回车/保存生效），卡片底部不再显示输入框、只显示当前秒数（点击秒数也可打开设置）。
 - **v1.0.2**：修复日/周进度条不显示的渲染 bug（`requestAnimationFrame` 闭包捕获循环尾值，导致除月条外全部停在 0%）；DS 峰谷状态去掉末尾「· 已过 %」百分比；刷新间隔可自定义（秒，5–3600，localStorage 持久化）。
 - **v1.0.1**：新增 DS 峰谷（高峰/低谷计费时段）色带；v1.0.0：首个版本。
