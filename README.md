@@ -28,7 +28,7 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 # 安装最新 main 分支
 dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
 # 或锁定稳定版本 tag（推荐）
-dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.4
+dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.5
 ```
 
 ### 或从源码打包（本地开发）
@@ -37,7 +37,7 @@ dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.4
 git clone https://github.com/wellcover/dsh-opencodego-quota.git
 cd dsh-opencodego-quota
 npm pack
-dsh plugin --profile web add dsh-opencodego-quota-1.0.4.tgz
+dsh plugin --profile web add dsh-opencodego-quota-1.0.5.tgz
 ```
 
 装完**重启 `dsh web`**（或桌面应用重开）生效。`dsh plugin add` 会自动：
@@ -85,6 +85,7 @@ Key 解析顺序：
 
 ## 变更记录
 
+- **v1.0.5**：消除定时“刷新闪动”——数据请求期间不再整卡 loading 重建；30s 本地时钟只在分钟变化时局部替换峰谷条，不再整卡重绘。
 - **v1.0.4**：额度进度条颜色随已用额度 0→100% 由绿渐变到红（填充条、圆点、百分比同色）。
 - **v1.0.3**：刷新间隔改为标题栏 ⚙ 设置弹层调整（回车/保存生效），卡片底部不再显示输入框、只显示当前秒数（点击秒数也可打开设置）。
 - **v1.0.2**：修复日/周进度条不显示的渲染 bug（`requestAnimationFrame` 闭包捕获循环尾值，导致除月条外全部停在 0%）；DS 峰谷状态去掉末尾「· 已过 %」百分比；刷新间隔可自定义（秒，5–3600，localStorage 持久化）。

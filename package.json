@@ -1,6 +1,6 @@
 {
   "name": "dsh-opencodego-quota",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "OpenCode Go (opencode.ai/zen/go) 额度用量插件：在 DSH Web GUI 左侧栏常驻一张额度卡片，展示日(近5小时)/周/月三个窗口的用量进度条、换算金额、重置时间与刷新时间；自动刷新间隔可在标题栏 ⚙ 设置弹层中自由输入（秒），卡片底部只显示当前秒数。Host 半在宿主进程查询官方 /zen/go/v1/usage 接口，Client 半是一个自包含的左侧栏 DOM 卡片（无 React、无构建步骤）。",
   "keywords": [
     "deepseek",
