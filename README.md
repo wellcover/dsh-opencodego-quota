@@ -25,41 +25,11 @@ DeepSeek Harness（DSH）Web GUI 的 **OpenCode Go 额度用量插件**：在页
 ### 从 GitHub 直接安装（推荐）
 
 ```bash
-# 安装最新 main 分支
 dsh plugin --profile web add github:wellcover/dsh-opencodego-quota
 # 或锁定稳定版本 tag（推荐）
 dsh plugin --profile web add github:wellcover/dsh-opencodego-quota#v1.0.5
 ```
 
-### 或从源码打包（本地开发）
-
-```bash
-git clone https://github.com/wellcover/dsh-opencodego-quota.git
-cd dsh-opencodego-quota
-npm pack
-dsh plugin --profile web add dsh-opencodego-quota-1.0.5.tgz
-```
-
-装完**重启 `dsh web`**（或桌面应用重开）生效。`dsh plugin add` 会自动：
-1. 用 pnpm 把包装进 `~/.dsh/profiles/web`；
-2. 把包名写入 profile 的 `dsh.profile.bundles`；
-3. 启动时读取包内 `cordis.patch.yml` 挂载插件行（`/opencodego-quota/api` 路由）。
-
-手动安装（无 pnpm）：
-
-```bash
-# 1. 拷贝包到 profile 的 node_modules
-copy /Y opencodego-quota %USERPROFILE%\.dsh\profiles\web\node_modules\dsh-opencodego-quota\ (递归)
-# 2. 在 %USERPROFILE%\.dsh\profiles\web\package.json 的 dsh.profile.bundles 追加 "dsh-opencodego-quota"
-# 3. 在 %USERPROFILE%\.dsh\profiles\web\cordis.patch.yml 追加：
-#   - insert:
-#       - id: opencodego-quota
-#         name: 'dsh-opencodego-quota'
-#         inject:
-#           - fs
-#           - webServer
-#           - credentials
-```
 
 ## 配置
 
@@ -87,9 +57,6 @@ Key 解析顺序：
 
 - **v1.0.5**：消除定时“刷新闪动”——数据请求期间不再整卡 loading 重建；30s 本地时钟只在分钟变化时局部替换峰谷条，不再整卡重绘。
 - **v1.0.4**：额度进度条颜色随已用额度 0→100% 由绿渐变到红（填充条、圆点、百分比同色）。
-- **v1.0.3**：刷新间隔改为标题栏 ⚙ 设置弹层调整（回车/保存生效），卡片底部不再显示输入框、只显示当前秒数（点击秒数也可打开设置）。
-- **v1.0.2**：修复日/周进度条不显示的渲染 bug（`requestAnimationFrame` 闭包捕获循环尾值，导致除月条外全部停在 0%）；DS 峰谷状态去掉末尾「· 已过 %」百分比；刷新间隔可自定义（秒，5–3600，localStorage 持久化）。
-- **v1.0.1**：新增 DS 峰谷（高峰/低谷计费时段）色带；v1.0.0：首个版本。
 
 ## License
 
